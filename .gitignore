@@ -1,0 +1,4 @@
+.stack-work/
+hylo-quick.cabal
+stack.yaml.lock
+*~
