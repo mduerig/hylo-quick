@@ -14,7 +14,7 @@ tests:
 copyright: 2020 Michael Dürig
 dependencies:
 - base >= 4.7 && < 5
-- recursion-schemes
+- data-fix
 name: hylo-quick
 version: 0.1.0.0
 extra-source-files:

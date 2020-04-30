@@ -2,16 +2,18 @@
 
 module HyloQuick
     ( qSort
+    , unfoldList
+    , foldTree
     ) where
 
 import Data.List
-import Data.Functor.Foldable ( hylo )
+import Data.Fix ( hylo, cata, ana, Fix )
 
 type Algebra f c = f c -> c
 type CoAlgebra f c = c -> f c
 
 data TreeF a r = Leaf | Node a r r
-  deriving Functor
+  deriving ( Functor, Show )
 
 split :: Ord a => CoAlgebra (TreeF a) [a]
 split [] = Leaf
@@ -24,3 +26,9 @@ join (Node a l r) = l ++ [a] ++ r
 
 qSort :: Ord a => [a] -> [a]
 qSort = hylo join split
+
+unfoldList :: Ord a => [a] -> Fix ( TreeF a )
+unfoldList = ana split
+
+foldTree :: Ord a => Fix ( TreeF a ) -> [a]
+foldTree = cata join
