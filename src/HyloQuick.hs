@@ -25,7 +25,7 @@ join Leaf = []
 join (Node a l r) = l ++ [a] ++ r
 
 qSort :: Ord a => [a] -> [a]
-qSort = hylo join split
+qSort = hylo join split  -- and even more terse: qSort = split ~> join
 
 unfoldList :: Ord a => [a] -> Fix ( TreeF a )
 unfoldList = ana split
